@@ -1,0 +1,164 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_artId",
+				"type": "uint256"
+			},
+			{
+				"name": "_newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferArt",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_artId",
+				"type": "uint256"
+			}
+		],
+		"name": "getArt",
+		"outputs": [
+			{
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "bytes"
+			},
+			{
+				"name": "artist",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getArtObjects",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "artist",
+						"type": "address"
+					},
+					{
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"name": "artData",
+						"type": "bytes"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_artData",
+				"type": "bytes"
+			}
+		],
+		"name": "newArt",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_artId",
+				"type": "uint256"
+			}
+		],
+		"name": "getArtHistory",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_artId",
+				"type": "uint256"
+			},
+			{
+				"name": "_historyData",
+				"type": "bytes"
+			}
+		],
+		"name": "newHistory",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "artId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "artist",
+				"type": "address"
+			}
+		],
+		"name": "newArtEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "artId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "changeOwnerArt",
+		"type": "event"
+	}
+]
