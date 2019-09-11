@@ -22,6 +22,7 @@ class ListArtHome extends React.Component{
                 arrayHelper.push(getArweaveTxData(tx))
             })
             const info = await Promise.all(arrayHelper)
+            console.log(info)
             const result = artList.map((art, index) => {
                 art.artData = info[index]
                 return art

@@ -31,12 +31,13 @@ class ItemFeedAdm extends React.Component{
     async componentDidMount(){
         const { txId } = this.props.item
         const result = await this.props.listHistory.filter(function(e) {
-            return e === txId
+            return e.url === txId
         })
+        console.log(result)
         if(result.length > 0){
-            this.setState({add:true, view:false})
-        }else{
             this.setState({add:false, view:true})
+        }else{
+            this.setState({add:true, view:false})
         }
     }
 

@@ -9,6 +9,7 @@ const permawebService = Arweave.init({
 });
 
 async function getArweaveTxData(txId){
+  console.log(txId)
     return new Promise(async function(resolve, reject){
       try{
         const tx = await permawebService.transactions.get(txId)
@@ -18,6 +19,7 @@ async function getArweaveTxData(txId){
         data.arAddress = owner
         resolve(data)
       }catch(err){
+        console.log(err)
         resolve({error:true, err})
       }
     })

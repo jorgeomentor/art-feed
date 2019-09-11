@@ -3,7 +3,7 @@ import getEth from "../getEth";
 import ART_FEED_ABI from './ArtFeedABI.json'
 import { getArweaveTxData } from '../permawebService';
 
-const ART_FEED_ADDRESS = "0x124316a0faaa96371c46e8e3f159fbdc9de70680"
+const ART_FEED_ADDRESS = "0x2b35cebfcc070837c1161f1ca1c0e078f96201c6"
 
 const artFeedContractFactory = () => new Promise(async (resolve, reject) => {
     try {
@@ -60,7 +60,13 @@ const getArtFeed = (artId) => new Promise(async(resolve, reject) => {
 const getArtFeedRaw = (artId) => new Promise(async(resolve, reject) => {
   try{
     const contract = await artFeedContractFactory()
-    const result = await contract.methods.getArtHistory(artId).call()
+    const rawDataArray = await contract.methods.getArtHistory(artId).call()
+    let result = []
+    for (let item of rawDataArray){
+      const url = await Web3.utils.hexToUtf8(item)
+      const data = await getArweaveTxData(url)
+      result.push({data, url})
+    }
     resolve(result)
   }catch(err){
     reject(err)

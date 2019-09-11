@@ -91,7 +91,9 @@ class NewArt extends React.Component{
         try{
             await permawebService.transactions.sign(sendArtTransaction, arweaveWallet);
             const response = await permawebService.transactions.post(sendArtTransaction);
-            
+            console.log('---- AR TX ID ----')
+            console.log(response.id)
+            console.log('---- AR TX ID ----')
             const artDataBytes = await Web3.utils.toHex(sendArtTransaction.id)
             let artFeedContract = await artFeedContractFactory()
             const expectedFee = await artFeedContract.methods.newArt(artDataBytes).estimateGas()
@@ -117,7 +119,7 @@ class NewArt extends React.Component{
             if(event.target.files[0] && event.target.files[0]['type'].split('/')[0] === 'image'){
                 const imageData = await readImageFile(event.target.files[0])
                 if(imageData){
-                    this.setState({firstPhoto: imageData})
+                    this.setState({firstPhoto: imageData,sendArtTransaction:false, arTxFee:false, newArBalance:false })
                 }
             }else{
                 alert('Invalid IMG')
@@ -134,7 +136,7 @@ class NewArt extends React.Component{
             if(event.target.files[0] && event.target.files[0]['type'].split('/')[0] === 'image'){
                 const imageData = await readImageFile(event.target.files[0])
                 if(imageData){
-                    this.setState({secondPhoto: imageData})
+                    this.setState({secondPhoto: imageData,sendArtTransaction:false, arTxFee:false, newArBalance:false})
                 }
             }else{
                 alert('Invalid IMG')
@@ -185,14 +187,14 @@ class NewArt extends React.Component{
                     <Divider />
                         <Form.Field>
                         <label>Title</label>
-                                <Input onChange={(e) => this.setState({ titleArt: e.target.value })} placeholder='Search...' />
+                                <Input onChange={(e) => this.setState({ titleArt: e.target.value,sendArtTransaction:false, arTxFee:false, newArBalance:false })} placeholder='Search...' />
                         </Form.Field>
                     </Grid.Row>           
                     <Grid.Row style={{marginTop:5, marginBottom:20}}>
                     <Divider />
                         <Form.Field>
                             <label>Description</label>
-                            <TextArea onChange={(e) => this.setState({ descriptionArt: e.target.value })} placeholder='Tell us more' />
+                            <TextArea onChange={(e) => this.setState({ descriptionArt: e.target.value,sendArtTransaction:false, arTxFee:false, newArBalance:false })} placeholder='Tell us more' />
                         </Form.Field>
                     </Grid.Row>
                     <Grid.Row style={{marginTop:5, marginBottom:20}}>
